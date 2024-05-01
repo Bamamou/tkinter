@@ -22,7 +22,8 @@ def Next():
    else:
         num = num+1
         label.grid_forget()
-        label = Label(font=('Arial', 40, 'bold'), 
+        label = Label(text=photoes[num],
+                        font=('Arial', 40, 'bold'), 
                         fg="green", 
                         background='black',
                         relief=RAISED,
@@ -31,7 +32,6 @@ def Next():
                         image= images[num] )
         label.grid(row=0, column=0, columnspan=3)
         var.set(num)
-        print(num)
                 
 #back function
 def back():
@@ -43,7 +43,8 @@ def back():
    else:
         num -=1
         label.grid_forget()
-        label = Label(font=('Arial', 40, 'bold'), 
+        label = Label(  text=photoes[num],
+                        font=('Arial', 40, 'bold'), 
                         fg="green", 
                         background='black',
                         relief=RAISED,
@@ -52,10 +53,9 @@ def back():
                         image= images[num] )
         label.grid(row=0, column=0, columnspan=3)
         var.set(num)
-        print(num)
 
 
-label = Label(
+label = Label( text="Roses",
                font=('Arial', 40, 'bold'), 
                fg="green", 
                background='black',
