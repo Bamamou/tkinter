@@ -9,22 +9,42 @@ my_img = ImageTk.PhotoImage(Image.open("flower1.jpg"))
 my_label = Label(image=my_img)
 flowers = ["flower1.jpg","flower2.jpg","flower3.jpg","flower4.jpg","flower5.jpg"]
 
-
+images = [ImageTk.PhotoImage(Image.open(flowers[0])), ImageTk.PhotoImage(Image.open(flowers[1])), ImageTk.PhotoImage(Image.open(flowers[2])), ImageTk.PhotoImage(Image.open(flowers[1])), ImageTk.PhotoImage(Image.open(flowers[3]))]
+varLabel2 = IntVar()
+number = 0
 def forward_fun():
     global my_label
     global number
     global flowers
-    number = 0
-    my_label.grid_forget()
-    images =ImageTk.PhotoImage(Image.open(flowers[number]))
-    my_label = Label(image= images)
-    my_label.grid(row=0, column=0, columnspan=3)
-    number = number+1
-    #number += number
+    number += 1
+    if(number>=5):
+        #number -=number (To loop over)
+        number=4
+        varLabel2.set(number)
+    else:
+        my_label.grid_forget()
+        my_label = Label(image= images[number])
+        my_label.grid(row=0, column=0, columnspan=3)
+        varLabel2.set(number)
+        print(number)
             
 
 def backward_fun():
-    return
+    global my_label
+    global number
+    global flowers
+    number -= 1
+    if(number<=0):
+        #number +=number  (To loop over)
+        number=1
+        varLabel2.set(number)
+    else:
+        my_label.grid_forget()
+        my_label = Label(image= images[number])
+        my_label.grid(row=0, column=0, columnspan=3)
+        varLabel2.set(number)
+        print(number)
+
 
 forward = Button(root, text=">>", command= lambda: forward_fun())
 backward = Button(root, text="<<", command= lambda: backward_fun())
