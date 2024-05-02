@@ -3,6 +3,8 @@ from tkinter import *
 
 window = Tk()
 window.config(background="black")
+window.title('Album') #this is how to create a title
+window.iconbitmap('evokem.ico')  #This is how to add an icon
 
 photoes = ['Roses.png', 'Orange.png', 'table.png']
 images=[] # create an empty list
@@ -16,11 +18,13 @@ var = IntVar()
 def Next():
    global label
    global num
-   if (num>=2):
-        num=2
+   if (num>=len(photoes)-1):
+        next_button.config(state=DISABLED)
         var.set(num)
+
    else:
         num = num+1
+        back_button.config(state=NORMAL)
         label.grid_forget()
         label = Label(text=photoes[num],
                         font=('Arial', 40, 'bold'), 
@@ -38,11 +42,12 @@ def back():
    global label
    global num
    if (num<=0):
-        num=0
+        back_button.config(state=DISABLED)
         var.set(num)
    else:
         num -=1
         label.grid_forget()
+        next_button.config(state=NORMAL)
         label = Label(  text=photoes[num],
                         font=('Arial', 40, 'bold'), 
                         fg="green", 
