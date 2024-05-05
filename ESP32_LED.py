@@ -2,7 +2,7 @@ import serial
 import time
 import tkinter
 
-
+3
 def quit():
     global tkTop
     ser.write(bytes('L', 'UTF-8'))
@@ -14,11 +14,14 @@ def set_button1_state():
         varLabel.set("LED ON ")
         ser.write(bytes('H', 'UTF-8'))
         varLabel2.set(b)
-        print(b)
+    
 
 def set_button2_state():
         varLabel.set("LED OFF")
         ser.write(bytes('L', 'UTF-8'))
+        tkLabel.config(textvariable=0)
+        varLabel2.set(0)
+
 
 ser = serial.Serial('com12', 115200)   # Choose the right port number and baudrate 
 print("Reset ESP32")
@@ -35,7 +38,7 @@ tkTop.counter = 0
 b = tkTop.counter
 
 varLabel = tkinter.IntVar()
-tkLabel = tkinter.Label(textvariable=varLabel, )
+tkLabel = tkinter.Label(textvariable=varLabel)
 tkLabel.pack()
 
 varLabel2 = tkinter.IntVar()

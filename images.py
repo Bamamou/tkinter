@@ -26,7 +26,7 @@ def forward_fun():
         my_label = Label(image= images[number])
         my_label.grid(row=0, column=0, columnspan=3)
         varLabel2.set(number)
-        print(number)
+
             
 
 def backward_fun():
@@ -43,7 +43,7 @@ def backward_fun():
         my_label = Label(image= images[number])
         my_label.grid(row=0, column=0, columnspan=3)
         varLabel2.set(number)
-        print(number)
+
 
 
 forward = Button(root, text=">>", command= lambda: forward_fun())

@@ -6,7 +6,7 @@ window.config(background="black")
 window.title('Album') #this is how to create a title
 window.iconbitmap('evokem.ico')  #This is how to add an icon
 
-photoes = ['Roses.png', 'Orange.png', 'table.png']
+photoes = ['Roses.png', 'LoveRose.png', 'FreeRose.png','RedRose.png', 'DeepRose.png','Valentine.png', 'Christmas.png','painting.png' ]
 images=[] # create an empty list
 for img in range(len(photoes)):
     images.append(PhotoImage(file = photoes[img]))   #Store all the png images in the images list

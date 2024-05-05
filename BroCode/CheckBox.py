@@ -6,6 +6,9 @@ Window.config(background="black")
 
 f = IntVar()  # save the checkbox variables
 m = IntVar()
+vari = IntVar()
+num = 1 # int the global variable for show
+
 
 def gender_display():
     global gender
@@ -22,17 +25,41 @@ def delete2():
     password_Entry.delete(0, END)
 # Dubmit function not yet define
 def submit():
-      pass
+    first_name = first_nameEntry.get()
+    last_name = lastname_Entry.get()
+    password = password_Entry.get()
+    print(f"First name : {first_name} \n Last name: {last_name} \n Pasword: {password}")
 
+def show():
+    global num
+    global password_Entry
+    num +=1
+    password = password_Entry.get()
+    if (num%2==0):
+        password_show.config(text="Show")
+        password_Entry.config(show="*")
+    else:
+        password_show.config(text="Hide")
+       # password_Entry.delete(0, END)
+        password_Entry = Entry(Window,
+                        width=50, 
+                        bg="black", 
+                        fg="green",
+                        borderwidth=5,
+                        font=('times new roman', 15, 'bold'),
+                        )
+       # password_Entry.delete(0, END)
+        password_Entry.insert(0, password_Entry.get())
+    vari.set(num)    
 
 def check():
     first_name = first_nameEntry.get()
     last_name = lastname_Entry.get()
     password = password_Entry.get()
     fLabel = Label(Window, text="First name: "+ first_name, font=("times new roman", 10, 'bold'),fg = "green", bg ="black")
-    lLabel = Label(Window, text="First name: "+ last_name, font=("times new roman", 10, 'bold'),fg = "green", bg ="black")
-    gLabel = Label(Window, text="First name: "+ gender, font=("times new roman", 10, 'bold'),fg = "green", bg ="black")
-    pLabel = Label(Window, text="First name: "+ password, font=("times new roman", 10, 'bold'),fg = "green", bg ="black")
+    lLabel = Label(Window, text="Last name: "+ last_name, font=("times new roman", 10, 'bold'),fg = "green", bg ="black")
+    gLabel = Label(Window, text="Gender: "+ gender, font=("times new roman", 10, 'bold'),fg = "green", bg ="black")
+    pLabel = Label(Window, text="Password: "+ password, font=("times new roman", 10, 'bold'),fg = "green", bg ="black")
     fLabel.grid(row=5, column=1)
     lLabel.grid(row=6, column=1)
     gLabel.grid(row=7, column=1)
@@ -106,7 +133,6 @@ password_Entry = Entry(Window,
                         fg="green",
                         borderwidth=5,
                         font=('times new roman', 15, 'bold'),
-                        show="*"
                         )
 password_Entry.insert(0,"Enter your password")
 
@@ -118,6 +144,12 @@ password_DeleteButton = Button(Window,
                                 fg = "green",
                                 bg = "black"
                                 )
+password_show =Button(Window,
+                      text="Hide",
+                      font=("times new roman", 10, 'bold'),
+                      fg = "green",
+                      bg = "black",
+                      command=show)
 
 last_nameDeleteButton = Button(Window, 
                                 text="delete",
@@ -162,7 +194,7 @@ last_nameDeleteButton.grid(row=1, column=2)
                                 
 password_label.grid(row=2, column=0)
 password_Entry.grid(row=2, column=1)
-password_DeleteButton.grid(row=2, column=2)
+password_show.grid(row=2, column=2)
 
 Gender_label.grid(row =3, column=0)
 Male_button.grid(row =3, column=1)
