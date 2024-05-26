@@ -12,18 +12,21 @@ def set_button1_state():
         global b
         b += 1
         varLabel.set("LED ON ")
-        ser.write(bytes('H', 'UTF-8'))
+        print(ser.read(100))
+       # ser.write(bytes('H', 'UTF-8'))
         varLabel2.set(b)
     
 
 def set_button2_state():
         varLabel.set("LED OFF")
-        ser.write(bytes('L', 'UTF-8'))
+       # ser.write(bytes('L', 'UTF-8'))
+        print(ser.read(100))
+        
         tkLabel.config(textvariable=0)
         varLabel2.set(0)
 
 
-ser = serial.Serial('com12', 115200)   # Choose the right port number and baudrate 
+ser = serial.Serial('com4', 115200)   # Choose the right port number and baudrate 
 print("Reset ESP32")
 time.sleep(3)
 ser.write(bytes('L', 'UTF-8'))
