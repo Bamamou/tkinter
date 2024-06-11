@@ -31,7 +31,10 @@ def download(requirement):
         print("Some Error!")
     print('Downloading video: ' + yt.streams[0].title)
     stream.download(output_path=SAVE_PATH)
-    print('Video downloaded successfully!')
+    if requirement == "Audio":
+        print('Audio downloaded successfully!')
+    else:
+        print('Video downloaded successfully!')
     
 Highest_resolution = Label(window, text ="Copy and paste the video url here", font=('times new roman', 10, 'italic'))
 entry = Entry(window, 
