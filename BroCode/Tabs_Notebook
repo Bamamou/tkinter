@@ -1,31 +1,75 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter.colorchooser import askcolor
 
 window = Tk()
 window.geometry("450x450")
+
 tab_control = ttk.Notebook(window)
 
+langs = ["C", "C++", "Java", "Python", "PHP"]
 tab1 = ttk.Frame(tab_control)
 tab2 = ttk.Frame(tab_control)
-
+# Adding Size grip
+tab1sizegrip = ttk.Sizegrip(tab1)
+tab2sizegrip = ttk.Sizegrip(tab2)
+tab1sizegrip.pack(expand = True, fill = BOTH, anchor = SE)
+tab2sizegrip.pack(expand = True, fill = BOTH, anchor = SE)
+#Add tabs to the frame
 tab_control.add(tab1, text='Tab 1',padding=10)
 tab_control.add(tab2, text='Tab 2', padding=15)
+Combo = ttk.Combobox(tab1, values = langs)
+Combo.set("Pick an Option")
 
 def buton_press(button):
     if button == "button1":
-        print("button1 of tab1 pressed")
+        rgb, hex = askcolor()  # return the color in rgb and hex
+        buton1.config(background=hex)
+        
     elif button == "button2":
-        print("button1 of tab2 pressed")
+        rgb, hex = askcolor()  # return the color in rgb and hex
+        buton2.config(background=hex)
+    elif button =="Plus":
+        progressBar.step(1)
+        progress_Label.config(text=f'Progress: {progressBar["value"]}')
+        if progressBar["value"] >= 99:
+            plus_button.config(state=DISABLED)
 
+        else:
+            plus_button.config(state=NORMAL)
+            minus_button.config(state=NORMAL)
+       
+    elif button =="Minus":
+        progressBar.step(-1)
+        progress_Label.config(text=f'Progress: {progressBar["value"]}')
+        if progressBar["value"] <=0:
+            minus_button.config(state=DISABLED)
+        else:
+            minus_button.config(state=NORMAL)
+            plus_button.config(state=NORMAL)
+       
+        
+
+
+     
+progressBar= ttk.Progressbar(tab2, mode='determinate', length=200)
 buton1 = Button(tab1,
                 text= "button1",
                 command= lambda: buton_press("button1"))
 buton2 = Button(tab2,
                 text= "button2",
                 command= lambda: buton_press("button2"))
+plus_button = ttk.Button(tab2, text= "Increase",pad = 10, cursor ="cross", command= lambda: buton_press("Plus"))
+minus_button = ttk.Button(tab2, text= "Decrese", pad = 10, cursor ="heart",command= lambda: buton_press("Minus"))
+progress_Label =Label(tab2, text= f'Progress: {progressBar["value"]}', font=("times new roman", 11,"bold") )
 
 buton1. place(x=10, y=5)
 buton2. place(x=20, y=5)
+Combo.place(x = 10, y = 40)
+progressBar.place(x = 40, y = 40)
+minus_button.place(x=50, y=70)
+plus_button.place(x=170, y=70)
+progress_Label.place(x=250, y=40)
 
 
 
